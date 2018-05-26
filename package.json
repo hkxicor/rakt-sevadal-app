@@ -24,6 +24,7 @@
     "appcenter": "^1.5.1",
     "appcenter-analytics": "^1.5.1",
     "appcenter-crashes": "^1.5.1",
+    "appcenter-push": "^1.5.1",
     "fbjs": "^0.8.16",
     "react": "^16.3.1",
     "react-native": "^0.55.3",

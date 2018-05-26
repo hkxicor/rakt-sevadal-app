@@ -3,6 +3,7 @@ package in.raktsevadal;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.microsoft.appcenter.reactnative.push.AppCenterReactNativePushPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
 import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
@@ -11,6 +12,9 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.push.Push;
 
 import io.invertase.firebase.RNFirebasePackage;
 // optional packages - add/remove as appropriate
@@ -41,7 +45,8 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNFirebasePackage(),
+      return Arrays.<ReactPackage>asList(new MainReactPackage(),
+          new AppCenterReactNativePushPackage(MainApplication.this), new RNFirebasePackage(),
           new AppCenterReactNativeCrashesPackage(MainApplication.this,
               getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
           new AppCenterReactNativeAnalyticsPackage(MainApplication.this,
@@ -69,6 +74,8 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    Push.setSenderId("318335943129");
+    SoLoader.init(this, false);
     SoLoader.init(this, /* native exopackage */ false);
   }
 }

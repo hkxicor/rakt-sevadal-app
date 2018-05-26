@@ -147,6 +147,7 @@ android {
 }
 
 dependencies {
+    compile project(':appcenter-push')
     compile(project(':react-native-firebase')) {
         transitive = false
     }

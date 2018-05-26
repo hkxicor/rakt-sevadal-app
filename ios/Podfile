@@ -6,6 +6,7 @@ target 'RaktSevadal' do
   # use_frameworks!
 
   # Pods for RaktSevadal
+  pod 'AppCenter/Push', '~> 1.6.1'
   pod 'AppCenter/Crashes', '~> 1.6.1'
   pod 'AppCenter/Analytics', '~> 1.6.1'
   pod 'AppCenterReactNativeShared', '~> 1.5.1'
