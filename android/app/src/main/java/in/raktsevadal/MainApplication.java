@@ -3,6 +3,7 @@ package in.raktsevadal;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.microsoft.codepush.react.CodePush;
 import com.microsoft.appcenter.reactnative.push.AppCenterReactNativePushPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
@@ -38,6 +39,12 @@ import java.util.List;
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+
+        @Override
+        protected String getJSBundleFile() {
+        return CodePush.getJSBundleFile();
+        }
+    
     @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
@@ -46,6 +53,7 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
           new AppCenterReactNativePushPackage(MainApplication.this), new RNFirebasePackage(),
           new AppCenterReactNativeCrashesPackage(MainApplication.this,
               getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
